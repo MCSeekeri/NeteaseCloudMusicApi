@@ -388,6 +388,7 @@ export PORT=9000
 /var/lang/node16/bin/node app.js
 ``` 
 7. 点击`完成`,等待部署完成,点击`资源列表`的 `API网关` 里的 `URL`,正常情况会打开文档地址,点击文档`例子`可查看接口调用效果
+8. 注意: 当前(2024-08-24), 用此法创建的话, 会`默认`关联一个"日志服务-日志主题"(创建过程中没有提醒), 此服务是计量收费的
 
 ## 可以使用代理
 
@@ -568,6 +569,17 @@ v3.30.0 后支持手动传入 cookie,登录接口返回内容新增 `cookie` 字
 {
     ...,
     cookie:"xxx"
+}
+```
+另外的cookie说明:
+可以直接从浏览器中获取cookie值, 只需要其中key为`MUSIC_U`的数据即可
+请求
+```
+GET https://example.com/search?keywords=HELLO&cookie=MUSIC_U%3Dxxxx
+POST https://example.com/search?keywords=HELLO
+body {
+  ...,
+  "cookie": "MUSIC_U=xxxx"
 }
 ```
 
